@@ -1,7 +1,8 @@
 # AngularJS Style Guide
 
 *Opinionated AngularJS Coffeescript style guide for teams by [@joelcoxokc](//twitter.com/joelcoxokc)*
-*Original Javascript style guide by [@john_papa](//twitter.com/john_papa)*
+
+Original Javascript style guide by [@john_papa](//twitter.com/john_papa)
 
 If you are looking for an opinionated style guide for syntax, conventions, and structuring AngularJS applications, then step right in. The styles contained here are based on on my experience with [AngularJS](//angularjs.org), presentations, [Pluralsight training courses] (http://pluralsight.com/training/Authors/Details/john-papa) and working in teams.
 
