@@ -250,7 +250,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
 *NOTE!*: Considering CoffeeScript automatically returns the last line, we must place a return statement at the bottom so the controller doesn't *return* anything. In most cases you do not need the return statement. However, I ran into a few issues not using it while running tests on these functions. So I highly recommend using it. 
 
-    ```
+    ```coffeescript
     ### avoid ###
     (->
       Customer = ($scope)->
@@ -351,7 +351,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
 *Considering*: CoffeeScript doesn't provide hoisted functions we have to wrap any bindable variables in a function. After the machine reads the entire controller, we call the function. In this example I used a function named "init".
 
-    ```
+    ```coffeescript
     ### avoid ###
     (->
       Sessions = ()->
