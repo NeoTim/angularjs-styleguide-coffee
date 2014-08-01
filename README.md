@@ -196,7 +196,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 	*Why?*: An IIFE removes variables from the global scope. This helps prevent variables and function declarations from living longer than expected in the global scope, which also helps avoid variable collisions.
 
     ```coffeescript
-    (()->
+    (->
       logger = ()->
 
         # logic goes here -->
@@ -316,17 +316,17 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ### avoid ###
     Sessions = ()->
 
-        @gotoSession = ()=>
-          ### ... ###
+      @gotoSession = ()=>
+        ### ... ###
 
-        @refresh = ()=>
-          ### ... ###
+      @refresh = ()=>
+        ### ... ###
 
-        @search = ()=>
-          ### ... ###
+      @search = ()=>
+        ### ... ###
 
-        @sessions = []
-        @title = 'Sessions'
+      @sessions = []
+      @title = 'Sessions'
     ```
 
     ```coffeescript
@@ -334,28 +334,28 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
     Sessions = ()->
 
-        init = ()=>
+      init = ()=>
 
-          @gotoSession = gotoSession
-          @refresh = refresh
-          @search = search
-          @sessions = []
-          @title = 'Sessions'
+        @gotoSession = gotoSession
+        @refresh = refresh
+        @search = search
+        @sessions = []
+        @title = 'Sessions'
 
-        ###########
+      ###########
 
-        gotoSession = ()=>
-          # ... #
+      gotoSession = ()=>
+        # ... #
 
-        refresh = ()=>
-          # ... #
+      refresh = ()=>
+        # ... #
 
-        search = ()=>
-          # ... #
+      search = ()=>
+        # ... #
 
-        init()
+      init()
 
-        return
+      return
 
     ```
 
