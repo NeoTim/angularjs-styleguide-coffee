@@ -283,7 +283,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```coffeescript
     ### recommended ###
     Customer = ()->
-      vm = this
+      vm = @
       vm.name = {}
       vm.sendMessage = ()->
 
@@ -301,9 +301,9 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
   - Note: You can avoid any [jshint](http://www.jshint.com/) warnings by placing the comment below above the line of code.
 
-  ```javascript
+  ```coffeescript
   /* jshint validthis: true */
-  var vm = this;
+  vm = @
   ```
 
   - **Bindable Members Up Top**: Place bindable members at the top of the controller, alphabetized, and not spread through the controller code.
@@ -314,48 +314,57 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
     ```coffeescript
     ### avoid ###
-    Sessions = ()->
+    (->
+      Sessions = ()->
 
-      @gotoSession = ()=>
-        ### ... ###
+        @gotoSession = ()=>
+          ### ... ###
 
-      @refresh = ()=>
-        ### ... ###
+        @refresh = ()=>
+          ### ... ###
 
-      @search = ()=>
-        ### ... ###
+        @search = ()=>
+          ### ... ###
 
-      @sessions = []
-      @title = 'Sessions'
+        @sessions = []
+        @title = 'Sessions'
+      angular
+        .module('app')
+        .controller('Sessions', Sessions)
+    )()
     ```
 
     ```coffeescript
     ### recommended ###
+    (->
+      Sessions = ()->
 
-    Sessions = ()->
+        init = ()=>
 
-      init = ()=>
+          @gotoSession = gotoSession
+          @refresh = refresh
+          @search = search
+          @sessions = []
+          @title = 'Sessions'
 
-        @gotoSession = gotoSession
-        @refresh = refresh
-        @search = search
-        @sessions = []
-        @title = 'Sessions'
+        ###########
 
-      ###########
+        gotoSession = ()=>
+          # ... #
 
-      gotoSession = ()=>
-        # ... #
+        refresh = ()=>
+          # ... #
 
-      refresh = ()=>
-        # ... #
+        search = ()=>
+          # ... #
 
-      search = ()=>
-        # ... #
+        init()
 
-      init()
-
-      return
+        return
+      angular
+        .module('app')
+        .controller('Sessions', Sessions)
+    )()
 
     ```
 
@@ -370,17 +379,21 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```coffeescript
 
     ### avoid ###
+    (->
+      Order = ( $http, $q )->
 
-    Order = ( $http, $q )->
+        @checkCredit = checkCredit
+        @total = 0
 
-      @checkCredit = checkCredit
-      @total = 0
-
-      checkCredit = ()=>
-        orderTotal = @total
-        $http.get('api/creditcheck').then (data)=>
-            remaining = data.remaining
-            return $q.when(!!(remaining > orderTotal))
+        checkCredit = ()=>
+          orderTotal = @total
+          $http.get('api/creditcheck').then (data)=>
+              remaining = data.remaining
+              return $q.when(!!(remaining > orderTotal))
+      angular
+        .module('app')
+        .controller('Order', Order)
+    )()
     ```
 
     ```coffeescript
@@ -400,6 +413,10 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
         init()
 
         return
+
+      angular
+        .module('app')
+        .controller('Order', Order)
     )()
     ```
 
@@ -519,39 +536,49 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
     ```coffeescript
     ### avoid ###
+    (->
+      dataService = ()->
 
-    dataService = ()->
+        someValue = ''
 
-      someValue = ''
+        save = ()->
+          # ... #
 
-      save = ()->
-        # ... #
+        validate = ()->
+          # ... #
 
-      validate = ()->
-        # ... #
+        return
+          save: save,
+          someValue: someValue,
+          validate: validate
 
-      return
-        save: save,
-        someValue: someValue,
-        validate: validate
+      angular
+        .module('app')
+        .service('dataService', dataService)
+    )()
 
 
     ```
 
     ```coffeescript
     ### recommended ###
-    dataService = ()->
+    (->
+      dataService = ()->
 
-      someValue = ''
+        someValue = ''
 
-      ##########
+        ##########
 
-      return
-        save: ()->
-         # . #
+        return
+          save: ()->
+           # . #
 
-        validate: ()->
-         # . #
+          validate: ()->
+           # . #
+      angular
+        .module('app')
+        .service('dataService', dataService)
+    )()
 
     ```
   - This way bindings are mirrored across the host object, primitive values cannot update alone using the revealing module pattern
