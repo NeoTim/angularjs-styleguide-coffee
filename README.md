@@ -248,7 +248,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
 	  *Why?*: Helps avoid the temptation of using `$scope` methods inside a controller when it may otherwise be better to avoid them or move them to a factory. Consider using `$scope` in a factory, or if in a controller just when needed. For example when publishing and subscribing events using [`$emit`](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$emit), [`$broadcast`](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$broadcast), or [`$on`](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$on) consider moving these uses to a factory and invoke form the controller.
 
-*NOTE!*: Considering CoffeeScript automatically returns the last line, we must place a return statement at the bottom so the controller doesn't *return* anything. In most cases you do not need the return statement. However, I ran into a few issues not using it while running tests on these functions. So I highly recommend using it. 
+	  *NOTE!*: Considering CoffeeScript automatically returns the last line, we must place a return statement at the bottom so the controller doesn't *return* anything. In most cases you do not need the return statement. However, I ran into a few issues not using it while running tests on these functions. So I highly recommend using it. 
 
     ```coffeescript
     ### avoid ###
@@ -276,9 +276,9 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     )()
     ```
 
-  - **controllerAs with vm**: Use a capture variable for `this` when using the `controllerAs` syntax. Choose a consistent variable name such as `vm`, which stands for ViewModel.
+   	  - **controllerAs with vm**: Use a capture variable for `this` when using the `controllerAs` syntax. Choose a consistent variable name such as `vm`, which stands for ViewModel.
 
-    *Why?*: The `this` keyword is contextual and when used within a function inside a controller may change its context. Capturing the context of `this` avoids encountering this problem.
+    	  *Why?*: The `this` keyword is contextual and when used within a function inside a controller may change its context. Capturing the context of `this` avoids encountering this problem.
 
     ```coffeescript
     ### avoid ###
