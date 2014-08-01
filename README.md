@@ -257,8 +257,8 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```coffeescript
     ### recommended - but see next section ###
     Customer = ()->
-      this.name = {}
-      this.sendMessage = ()->
+      @name = {}
+      @sendMessage = ()->
 
       return
     ```
