@@ -726,15 +726,13 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ### recommended ###
     (->
 
-      function myCalendarRange () {
-
-          link = (scope, element, attrs)->
-            # ... #
-
+      myCalendarRange = ()->
+            
           directive =
-              link: link,
               templateUrl: '/template/is/located/here.html',
-              restrict: 'EA'
+              restrict: 'EA',
+              link: (scope, element, attrs)->
+              	# ... #
 
           return directive
 
