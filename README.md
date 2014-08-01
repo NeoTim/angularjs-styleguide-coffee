@@ -248,19 +248,30 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
     ```coffeescript
     ### avoid ###
-    Customer = ($scope)->
-      $scope.name = {}
-      $scope.sendMessage = ()->
+    (->
+      Customer = ($scope)->
+        $scope.name = {}
+        $scope.sendMessage = ()->
+      angular
+        .module('app')
+        .controller('Customer', Customer)
+    )()
 
     ```
 
     ```coffeescript
     ### recommended - but see next section ###
-    Customer = ()->
-      @name = {}
-      @sendMessage = ()->
+    (->
+      Customer = ()->
+        @name = {}
+        @sendMessage = ()->
 
-      return
+        return
+
+      angular
+        .module('app')
+        .controller('Customer', Customer)
+    )()
     ```
 
   - **controllerAs with vm**: Use a capture variable for `this` when using the `controllerAs` syntax. Choose a consistent variable name such as `vm`, which stands for ViewModel.
@@ -269,40 +280,54 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
     ```coffeescript
     ### avoid ###
-    Customer = ()->
-      @name = {}
-      @sendMessage = ()->
+    (->
+      Customer = ()->
+        @name = {}
+        @sendMessage = ()->
 
-        # here @/this is not the same
-        @stuff = "stuff"
+          # here @/this is not the same
+          @stuff = "stuff"
 
-      return
-    }
+        return
+      angular
+        .module('app')
+        .controller('Customer', Customer)
+    )()
+
     ```
 
     ```coffeescript
     ### recommended ###
-    Customer = ()->
-      vm = @
-      vm.name = {}
-      vm.sendMessage = ()->
+    (->
+      Customer = ()->
+        vm = @
+        vm.name = {}
+        vm.sendMessage = ()->
 
-      return
+        return
+      angular
+        .module('app')
+        .controller('Customer', Customer)
+    )()
 
     ### OR use the fat arrow in functions => ###
+    (->
+      Customer = ()->
+        @name = {}
+        @sendMessage = ()=>
+          @stuff
 
-    Customer = ()->
-      @name = {}
-      @sendMessage = ()=>
-        @stuff
-
-      return
+        return
+      angular
+        .module('app')
+        .controller('Customer', Customer)
+    )()
     ```
 
   - Note: You can avoid any [jshint](http://www.jshint.com/) warnings by placing the comment below above the line of code.
 
   ```coffeescript
-  /* jshint validthis: true */
+  ### jshint validthis: true ###
   vm = @
   ```
 
