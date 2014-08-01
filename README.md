@@ -248,6 +248,8 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
 	  *Why?*: Helps avoid the temptation of using `$scope` methods inside a controller when it may otherwise be better to avoid them or move them to a factory. Consider using `$scope` in a factory, or if in a controller just when needed. For example when publishing and subscribing events using [`$emit`](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$emit), [`$broadcast`](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$broadcast), or [`$on`](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$on) consider moving these uses to a factory and invoke form the controller.
 
+*NOTE!*: Considering CoffeeScript automatically returns the last line, we must place a return statement at the bottom so the controller doesn't *return* anything. In most cases you do not need the return statement. However, I ran into a few issues not using it while running tests on these functions. So I highly recommend using it. 
+
     ```coffeescript
     ### avoid ###
     (->
@@ -337,8 +339,20 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
     *Why?*: Placing bindable members at the top makes it easy to read and helps you instantly identify which members of the controller can be bound and used in the View.
 
-    *Why?*: Setting anonymous functions inline can be easy, but when those functions are more than 1 line of code they can reduce the readability. Defining the functions below the bindable members (the functions will be hoisted) moves the implementation details down, keeps the bindable members up top, and makes it easier to read.
+    *Why?*: Setting anonymous functions inline can be easy, but when those functions are more than 1 line of code they can reduce the readability.
 
+*NOTE*: The javascript version of this style guide uses hoisted functions. CoffeeScript does not provide the ability do use 
+function declarations (hoisted functions).
+
+```javascript
+// function declaration
+function someFunction() { };
+ /* vs */
+var someFunction = function() { };
+```
+ Defining the functions below the bindable members (the functions will be hoisted) moves the implementation details down, keeps the bindable members up top, and makes it easier to read.
+
+*Considering*: CoffeeScript doesn't provide hoisted functions we have to wrap any bindable variables in a function. After the machine reads the entire controller, we call the function. In this example I used a function named "init".
     ```coffeescript
     ### avoid ###
     (->
