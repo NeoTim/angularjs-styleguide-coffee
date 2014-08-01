@@ -261,9 +261,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
         .controller('Customer', Customer)
     )()
 
-    ```
 
-    ```coffeescript
     ### recommended - but see next section ###
     (->
       Customer = ()->
