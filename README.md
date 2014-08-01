@@ -1,6 +1,6 @@
 # AngularJS Style Guide
 
-*Opinionated AngularJS Coffeescript style guide for teams by [@joelcoxokc](//twitter.com/joelcoxokc)*
+*Opinionated AngularJS Coffeescript style guide for teams by [@JoelCox](//twitter.com/joelcoxokc)*
 
 Original Javascript style guide by [@john_papa](//twitter.com/john_papa)
 
