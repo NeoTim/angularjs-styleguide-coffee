@@ -771,7 +771,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
           activate()
 
-        ////////////
+        ##############
 
         activate = ()=>
           dataservice
@@ -1083,35 +1083,30 @@ TODO
 
     *Why?*: Provides consistency using a common industry tool.
 
-    ```javascript
-    angular
-      .module('app')
-      .factory('logger', logger);
+    ```coffeescript
+    (->
+     ###
+     # @name logger
+     # @desc Application wide logger
+     ###
+      logger = ($log)->
 
-    /**
-     * @name logger
-     * @desc Application wide logger
-     */
-    function logger ($log) {
-      var service = {
-        logError: logError
-      };
-      return service;
+        return
+         ###
+         # @name logError
+         # @desc Logs errors
+         # @param {String} msg Message to log
+         # @returns {String}
+         ###
+          logError: (msg)->
+            loggedMsg = 'Error: ' + msg
+            $log.error(loggedMsg)
+            return loggedMsg
 
-      ////////////
-
-      /**
-       * @name logError
-       * @desc Logs errors
-       * @param {String} msg Message to log
-       * @returns {String}
-       */
-      function logError(msg) {
-        var loggedMsg = 'Error: ' + msg;
-        $log.error(loggedMsg);
-        return loggedMsg;
-      };
-    }
+      angular
+        .module('app')
+        .factory('logger', logger);
+    )()
     ```
 
 **[Back to top](#table-of-contents)**
