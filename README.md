@@ -342,15 +342,16 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 *NOTE*: The javascript version of this style guide uses hoisted functions. CoffeeScript does not provide the ability do use 
 function declarations (hoisted functions).
 
-```javascript
-// function declaration
-function someFunction() { };
- /* vs */
-var someFunction = function() { };
-```
+    ```javascript
+    // function declaration
+    function someFunction() { }; 
+    /* vs */
+    var someFunction = function() { };
+    ```
  Defining the functions below the bindable members (the functions will be hoisted) moves the implementation details down, keeps the bindable members up top, and makes it easier to read.
 
 *Considering*: CoffeeScript doesn't provide hoisted functions we have to wrap any bindable variables in a function. After the machine reads the entire controller, we call the function. In this example I used a function named "init".
+
     ```coffeescript
     ### avoid ###
     (->
